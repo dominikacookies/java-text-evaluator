@@ -32,6 +32,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public boolean add(E element )
 	{
 		// TODO: Implement this method
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element");
+		}
+
 		LLNode<E> currentNode = tail.prev;
 		LLNode<E> newNode = new LLNode<E>(element, currentNode, tail);
 		tail.prev = newNode;
@@ -66,8 +70,12 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element )
 	{
 		// TODO: Implement this method
+
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element");
+		}
+
 		if (size != 0 && index > size-1 || index < 0) {
-			System.out.print(index);
 			throw new IndexOutOfBoundsException("Index" + index + "is out of bounds");
 		} else {
 			LLNode<E> currentNodeAtIndex = head;
@@ -120,14 +128,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			LLNode<E> previousNode = head;
 			LLNode<E> nextNode = head;
 
-			for (int i=1 ; i < index+2; i++) {
+			for (int i=0 ; i < index+2; i++) {
 				currentNodeInLoop = currentNodeInLoop.next;
 
 				if (i == index+1) {
 					nextNode = currentNodeInLoop;
 				}
 
-				if (i== index) {
+				if (i == index) {
 					nodeToRemoveData = currentNodeInLoop.data;
 				}
 
