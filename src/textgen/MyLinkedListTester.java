@@ -163,6 +163,13 @@ public class MyLinkedListTester {
 		list1.add(12);
 		assertEquals("Add: check element 3 is correct ", (Integer)12, list1.get(3));
 		assertEquals("Add: check size is correct ", 4, list1.size());
+
+		try {
+			list1.add(null);
+			fail("Check adding null element");
+		} catch (NullPointerException e) {
+
+		}
 	}
 
 
@@ -209,6 +216,12 @@ public class MyLinkedListTester {
 		catch (IndexOutOfBoundsException e) {
 
 		}
+		try {
+			list1.add(null);
+			fail("Check adding null element");
+		} catch (NullPointerException e) {
+
+		}
 	}
 
 	/** Test setting an element in the list */
@@ -248,5 +261,4 @@ public class MyLinkedListTester {
 		}
 
 	}
-
 }
