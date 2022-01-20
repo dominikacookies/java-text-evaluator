@@ -66,7 +66,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element )
 	{
 		// TODO: Implement this method
-		if (index > size-1 || index < 0) {
+		if (size != 0 && index > size-1 || index < 0) {
+			System.out.print(index);
 			throw new IndexOutOfBoundsException("Index" + index + "is out of bounds");
 		} else {
 			LLNode<E> currentNodeAtIndex = head;
@@ -100,21 +101,13 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E remove(int index)
 	{
 		// TODO: Implement this method
-		if (index > size-1 || index < 0) {
+		if (size == 0 || index > size-1 || index < 0) {
 			throw new IndexOutOfBoundsException("Index" + index + "is out of bounds");
 		}
 
 		E nodeToRemoveData = head.data;
 
-		if (index == 0) {
-			LLNode<E> nodeToRemove = head.next;
-			nodeToRemoveData = nodeToRemove.data;
-			LLNode<E> newHeadNode = nodeToRemove.next;
-			newHeadNode.prev = head;
-			head.next = newHeadNode;
-		}
-
-		if (index == size-1) {
+		if (size != 1 && index == size-1) {
 			LLNode<E> nodeToRemove = tail.prev;
 			nodeToRemoveData = nodeToRemove.data;
 			LLNode<E> newTailNode = nodeToRemove.prev;
@@ -145,6 +138,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 
 			previousNode.next = nextNode;
 			nextNode.prev = previousNode;
+		}
+
+		if (index == 0) {
+			LLNode<E> nodeToRemove = head.next;
+			nodeToRemoveData = nodeToRemove.data;
+			LLNode<E> newHeadNode = nodeToRemove.next;
+			newHeadNode.prev = head;
+			head.next = newHeadNode;
 		}
 
 		size--;
